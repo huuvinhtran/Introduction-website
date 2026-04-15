@@ -1,0 +1,96 @@
+/* style.css */
+
+body {
+    margin: 0;
+    overflow: hidden; /* This hides the annoying scrollbars */
+}
+
+#game-world {
+    width: 100vw;  /* 100% of the Viewport Width */
+    height: 100vh; /* 100% of the Viewport Height */
+    background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 80%, #2e8b57 80%, #2e8b57 100%);
+    position: relative;
+    /* Notice we removed the 4px border so it sits flush with the screen edges */
+}
+
+#knight {
+    position: absolute;
+    width: 64px;  /* Width of one frame */
+    height: 64px; /* Height of one frame */
+    
+    /* A 256x64 red placeholder image with numbers to test your animation frames */
+    background-image: url('https://dummyimage.com/256x64/cc0000/ffffff&text=F1++F2++F3++F4'); 
+    
+    top: 200px;
+    left: 200px;
+}
+
+/* Apply this to all balloons */
+.balloon {
+    position: absolute;
+    font-size: 40px;
+    transition: transform 0.1s ease-out;
+}
+
+.popped {
+    transform: scale(0);
+}
+
+/* The Attack Animation Frame */
+.attack-right {
+    /* For your dummy image, we'll just shift the background down to the second row */
+    background-position: 0px -64px; 
+}
+
+/* The Introduction Modal */
+#intro-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers it perfectly */
+    background-color: rgba(30, 30, 30, 0.95);
+    color: white;
+    padding: 40px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    
+    /* Crucial: Hide it until the balloon pops */
+    display: none; 
+    z-index: 100; /* Keeps it on top of everything */
+}
+
+/* --- ANIMATION STATES --- */
+/* This will cycle through the 4 "frames" of the dummy image */
+.walk-right {
+    animation: walk-right-anim 0.4s steps(4) infinite;
+}
+
+@keyframes walk-right-anim {
+    from { background-position: 0px 0px; } 
+    to { background-position: -256px 0px; } 
+}
+
+/* Add a default state so it doesn't animate when standing still */
+.idle-right {
+    background-position: 0px 0px;
+}
+
+.portfolio-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(30, 30, 30, 0.95);
+    color: white;
+    padding: 40px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-family: sans-serif;
+    display: none; 
+    z-index: 100;
+    width: 50vw;       /* Take up half the screen width */
+    max-width: 600px;  /* But don't stretch too wide on giant monitors */
+}
